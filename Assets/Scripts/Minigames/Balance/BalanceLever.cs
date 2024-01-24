@@ -6,32 +6,32 @@ using UnityEngine;
 public class BalanceLever : MonoBehaviour
 {
     [SerializeField] private BalancePlayer player;
-    private BalancePlayerStats balanceStats;
-    private float _inclination;
+    [SerializeField] private Rigidbody2D rb;
+    private ObjectSpawner _objectSpawner;
+    private float _inclinationToAdd;
 
+    private float Inclination => transform.rotation.z;
     private float MaxAngle => player.GetBalancePlayerStats().GetMaxAngle();
     private float TiltScale => player.GetBalancePlayerStats().GetTiltScale();
-    private float GravityScale => player.GetBalancePlayerStats().GetGravityScale();
 
     private void Start()
     {
+        _objectSpawner = FindObjectOfType<ObjectSpawner>();
         player.OnMovement += AddInclination;
-        GameEventManager.balanceObjectWeight += AddInclination;
     }
 
     private void AddInclination(float movement)
     {
-        _inclination += movement * TiltScale;
-        _inclination = Mathf.Clamp(_inclination, -MaxAngle, MaxAngle);
+        _inclinationToAdd += movement * TiltScale * (1+Mathf.Log(_objectSpawner.GetObjectCount()));
     }
+
 
     private void Update()
     {
-        if (_inclination > -MaxAngle && _inclination < MaxAngle)
+        if (Inclination >= -MaxAngle && Inclination <= MaxAngle)
         {
-            _inclination += _inclination * GravityScale * Time.deltaTime;
-            _inclination = Mathf.Clamp(_inclination, -MaxAngle, MaxAngle);
-            transform.rotation = Quaternion.AngleAxis(_inclination, Vector3.forward);
+            rb.AddTorque(_inclinationToAdd);
+            _inclinationToAdd = 0;
         }
     }
 }

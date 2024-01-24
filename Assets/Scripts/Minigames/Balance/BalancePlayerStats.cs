@@ -7,17 +7,11 @@ public class BalancePlayerStats : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
     [SerializeField] private float tiltScale;
-    [SerializeField] private float gravityScale;
     [SerializeField] private float maxAngle;
 
     public float GetMovementSpeed()
     {
         return movementSpeed;
-    }
-
-    public float GetGravityScale()
-    {
-        return gravityScale;
     }
 
     public float GetTiltScale()

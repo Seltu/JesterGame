@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameEventManager : MonoBehaviour
 {
-    public static event BalanceObjectWeight balanceObjectWeight;
-    public delegate void BalanceObjectWeight(float weight);
+    public static event BalanceObjectSpawn balanceObjectSpawn;
+    public delegate void BalanceObjectSpawn();
 
-    public static void BalanceObjectWeightTrigger(float weight)
+    public static void BalanceObjectWeightTrigger()
     {
-        balanceObjectWeight?.Invoke(weight);
+        balanceObjectSpawn?.Invoke();
     }
 }

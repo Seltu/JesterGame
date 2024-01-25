@@ -30,7 +30,7 @@ public class BalanceObject : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("OffscreenLimit"))
-        GameEventManager.AddScoreTrigger(-10);
+        GameEventManager.AddScoreTrigger(-15);
         Destroy(gameObject);
     }
 

@@ -76,6 +76,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7046043120709951365, guid: 56b48cffd83c47f45a719831874155db, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046043120709951365, guid: 56b48cffd83c47f45a719831874155db, type: 3}
       propertyPath: m_LinearDrag
       value: 0
       objectReference: {fileID: 0}

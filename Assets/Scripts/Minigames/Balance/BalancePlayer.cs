@@ -27,12 +27,7 @@ public class BalancePlayer : MonoBehaviour
         }
 
         inputVector = inputVector.normalized;
-
-        if (Physics2D.Raycast(transform.position + Vector3.down, inputVector, 0.5f)) {
-            rb.velocity = Vector2.zero;
-            return;
-        };
-
+    
         OnMovement?.Invoke(inputVector.x * Time.deltaTime * playerStats.GetMovementSpeed());
         rb.velocity = inputVector * playerStats.GetMovementSpeed();
     }

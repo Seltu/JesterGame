@@ -1,37 +1,35 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BalanceLever : MonoBehaviour
 {
     [SerializeField] private BalancePlayer player;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Collider2D leverCollider;
+    [SerializeField] private MinigameManager minigameManager;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite flippedSprite;
     private ObjectSpawner _objectSpawner;
-    private float _inclinationToAdd;
 
-    private float Inclination => transform.rotation.z;
-    private float MaxAngle => player.GetBalancePlayerStats().GetMaxAngle();
     private float TiltScale => player.GetBalancePlayerStats().GetTiltScale();
 
     private void Start()
     {
         _objectSpawner = FindObjectOfType<ObjectSpawner>();
+        if(minigameManager!=null)
+        minigameManager.OnGameWin += FlipOver;
         player.OnMovement += AddInclination;
+    }
+
+    private void FlipOver()
+    {
+        leverCollider.enabled = false;
+        spriteRenderer.sprite = flippedSprite;
     }
 
     private void AddInclination(float movement)
     {
-        _inclinationToAdd += movement * TiltScale * (1+Mathf.Log(_objectSpawner.GetObjectCount()));
+        rb.angularVelocity += movement * TiltScale;
     }
 
-
-    private void Update()
-    {
-        if (Inclination >= -MaxAngle && Inclination <= MaxAngle)
-        {
-            rb.AddTorque(_inclinationToAdd);
-            _inclinationToAdd = 0;
-        }
-    }
 }

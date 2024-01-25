@@ -8,6 +8,8 @@ public class BalancePlayer : MonoBehaviour
     public event Action<float> OnMovement;
     [SerializeField] private BalancePlayerStats playerStats;
     [SerializeField] private Rigidbody2D rb;
+    
+    
     void Update()
     {
         PlayerMovement();

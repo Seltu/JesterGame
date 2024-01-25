@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4616049805584658155}
   - component: {fileID: 4671696832821599901}
   - component: {fileID: 4660939407243399232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -120,12 +120,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7012644600688479755}
-  - component: {fileID: 4707586748447690560}
+  - component: {fileID: 3257034945873323140}
   - component: {fileID: 7418242046421364532}
   - component: {fileID: 7108719174320210786}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jester_Lava
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &4707586748447690560
+--- !u!50 &3257034945873323140
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9fa43e4ecd63d55488769f1e418b0e3e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 804026263ca0b984c8c2fff79c298713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jesterSpeed: 5
+  _jesterSpeed: 6
   _jumpForce: 9
 --- !u!114 &7108719174320210786
 MonoBehaviour:
@@ -193,9 +193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9d19082969eb142ba15e28d5ff9187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jesterRb: {fileID: 4707586748447690560}
+  _jesterRb: {fileID: 3257034945873323140}
   _jesterCollider: {fileID: 4660939407243399232}
   _jesterLavaStats: {fileID: 7418242046421364532}
   _groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
+  _wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _wallDrag: 10

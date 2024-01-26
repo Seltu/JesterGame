@@ -7,10 +7,26 @@ public class BalancePlayer : MonoBehaviour
 {
     public event Action<float> OnMovement;
     [SerializeField] private BalancePlayerStats playerStats;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private HingeJoint2D leverHingeJoint;
+    [SerializeField] private MinigameManager minigameManager;
     [SerializeField] private Rigidbody2D rb;
-    
-    
-    void Update()
+
+    private void Start()
+    {
+        if (minigameManager != null)
+            minigameManager.OnGameWin += FlipOver;
+    }
+
+    private void FlipOver()
+    {
+        leverHingeJoint.enabled = false;
+        playerAnimator.SetTrigger("Fall");
+        rb.velocity = Vector2.zero;
+        this.enabled = false;
+    }
+
+    private void Update()
     {
         PlayerMovement();
     }

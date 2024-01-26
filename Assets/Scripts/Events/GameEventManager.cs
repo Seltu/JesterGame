@@ -10,6 +10,8 @@ public class GameEventManager : MonoBehaviour
     public delegate void AddScore(float score);
     public static event EndScene endScene;
     public delegate void EndScene();
+    public static event OnTakeDamage onTakeDamage;
+    public delegate void OnTakeDamage();
 
 
     public static void BalanceObjectSpawnTrigger()
@@ -21,8 +23,14 @@ public class GameEventManager : MonoBehaviour
     {
         addScore?.Invoke(score);
     }
+
     public static void EndSceneTrigger()
     {
         endScene?.Invoke();
+    }
+
+    public static void OnTakeDamageTrigger()
+    {
+        onTakeDamage?.Invoke();
     }
 }

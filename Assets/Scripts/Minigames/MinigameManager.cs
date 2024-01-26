@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,17 +10,27 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] private int maxProgress;
     [SerializeField] private int startingProgress;
     [SerializeField] private string nextScene;
+    [SerializeField] private Animator canvasAnimator;
     private bool _ended;
     private float _progress;
 
-    public void Start()
+    private void OnEnable()
     {
         GameEventManager.addScore += AddProgress;
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.addScore -= AddProgress;
+    }
+
+    private void Start()
+    {
         _progress = startingProgress;
         laughMeter.SetMaxValue(maxProgress);
     }
 
-    public void AddProgress(float points)
+    private void AddProgress(float points)
     {
         if (_ended) return;
         _progress += points;
@@ -39,15 +48,20 @@ public class MinigameManager : MonoBehaviour
     private IEnumerator Lose()
     {
         _ended = true;
-        yield return new WaitForSeconds(3f);
+        canvasAnimator.SetTrigger("Lost");
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(3f);
         SceneManager.LoadScene("GameOver");
+        Time.timeScale = 1f;
     }
 
     private IEnumerator Win()
     {
         _ended = true;
         OnGameWin?.Invoke();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        GameEventManager.EndSceneTrigger();
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(nextScene);
     }
 }

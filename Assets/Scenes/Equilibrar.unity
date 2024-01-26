@@ -350,7 +350,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 882ffe3e89609bc4a8628ac2a7e438f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63a69b61620f7fc46a34b9794389e553, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -735,7 +735,6 @@ MonoBehaviour:
   - {fileID: 8093931232522256022, guid: a8202d71052a1534f89ee2b396e2ade4, type: 3}
   - {fileID: 3705619954132614392, guid: 370db1e1488b8ba4d9353c65ce163a07, type: 3}
   - {fileID: 288109108355571098, guid: 316e4a23edcb2b145a313a794717a47d, type: 3}
-  - {fileID: 763626235138818850, guid: 705e86c705fe55648840a1f16190d01f, type: 3}
   - {fileID: 6540384712007366955, guid: 2e1380c3033207b439f3ce7f7139e506, type: 3}
   spawnTime: 5
   spawnDistance: 7
@@ -1047,6 +1046,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BalancePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 1659867692456136076, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659867692456136076, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659867692456136076, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1659867692456136077, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1095,6 +1106,46 @@ PrefabInstance:
       propertyPath: minigameManager
       value: 
       objectReference: {fileID: 945489704}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775854857554051845, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8554568350722268054, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bb7ca64b7d11274d9817cc9f900cf1d, type: 3}
 --- !u!1001 &8972914674211289260
@@ -1192,9 +1243,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8972914674492117462, guid: 04d9937db0ecd6b42b0071b00fedad57, type: 3}
-      propertyPath: nextScene
-      value: Fosso_Lava
+    - target: {fileID: 8972914675332121290, guid: 04d9937db0ecd6b42b0071b00fedad57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 727
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972914675332121290, guid: 04d9937db0ecd6b42b0071b00fedad57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d9937db0ecd6b42b0071b00fedad57, type: 3}

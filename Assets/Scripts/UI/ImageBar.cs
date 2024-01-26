@@ -10,6 +10,12 @@ public class ImageBar : MonoBehaviour
     [SerializeField] private Image barImage;
     public GameObject[] uiBarImages;
 
+
+    private void Start()
+    {
+        UpdateBar();
+    }
+
     public void UpdateBar()
     {
         foreach (var image in uiBarImages)

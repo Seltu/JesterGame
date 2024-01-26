@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8877384b7fc1e3d4c99a6fdf5cf15fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 34
   maxValue: 100
   barImage: {fileID: 2249327587009901048}
   uiBarImages:

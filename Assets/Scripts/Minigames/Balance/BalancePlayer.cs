@@ -20,7 +20,6 @@ public class BalancePlayer : MonoBehaviour
 
     private void FlipOver()
     {
-        leverHingeJoint.enabled = false;
         playerAnimator.SetTrigger("Fall");
         rb.velocity = Vector2.zero;
         this.enabled = false;

@@ -15,7 +15,7 @@ public class BalanceObject : MonoBehaviour
             transform.position += Vector3.down * fallSpeed * Time.deltaTime;
         }
         else
-            GameEventManager.AddScoreTrigger(0.3f*Time.deltaTime);
+            GameEventManager.AddScoreTrigger(0.5f*Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,7 +30,7 @@ public class BalanceObject : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("OffscreenLimit"))
-        GameEventManager.AddScoreTrigger(-15);
+        GameEventManager.AddScoreTrigger(-30);
         Destroy(gameObject);
     }
 

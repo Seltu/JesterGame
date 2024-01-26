@@ -20,7 +20,7 @@ public class ElevationMecanic : MonoBehaviour
     {
         if(_isElevating)
             MoveUp();
-    }
+    }           
 
     private void MoveUp()
     {

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ImageBar : MonoBehaviour
 {
     [SerializeField] private float value;
     [SerializeField] private int maxValue;
+    [SerializeField] private Image barImage;
     public GameObject[] uiBarImages;
 
     public void UpdateBar()
@@ -16,6 +18,7 @@ public class ImageBar : MonoBehaviour
         }
         var imageIndex = value / maxValue * (uiBarImages.Length - 1);
         uiBarImages[Mathf.FloorToInt(imageIndex)].SetActive(true);
+        barImage.fillAmount = value / maxValue;
     }
 
     public void SetValue(float newValue)

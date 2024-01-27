@@ -764,7 +764,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 672e54903b15f454cb6e395d9f47f44f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b1bee5cba470c554f80601ddd932b1ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1141,6 +1141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3257034945873323140, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7012644600688479755, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1184,6 +1188,10 @@ PrefabInstance:
     - target: {fileID: 7012644600688479755, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418242046421364532, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
+      propertyPath: _jumpForce
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8266710020945438282, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_Name

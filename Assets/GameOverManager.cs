@@ -8,6 +8,7 @@ public class GameOverManager : MonoBehaviour
 {
     [SerializeField] private float gameOverTimer;
     [SerializeField] private TextMeshProUGUI continueText;
+    public static string _atualScene;
     private bool _cancelled;
     private void Update()
     {
@@ -19,7 +20,8 @@ public class GameOverManager : MonoBehaviour
         }
         else
         {
-            Application.Quit();
+            _atualScene = "IntroScene";
+            StartCoroutine(Continue());
         }
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
         {
@@ -32,6 +34,6 @@ public class GameOverManager : MonoBehaviour
     {
         GameEventManager.EndSceneTrigger();
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("IntroScene");
+        SceneManager.LoadScene(_atualScene);
     }
 }

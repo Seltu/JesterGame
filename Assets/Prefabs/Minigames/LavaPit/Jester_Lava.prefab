@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jesterSpeed: 6
-  _jumpForce: 600
+  _jumpForce: 650
   _jesterRb: {fileID: 3257034945873323140}
   _jesterCollider: {fileID: 4660939407243399232}
   _groundLayerMask:

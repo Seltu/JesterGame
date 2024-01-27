@@ -36,7 +36,6 @@ public class Jester_Lava_Visuals : MonoBehaviour
     private void OnSliding(bool obj)
     {
         jesterAnimator.SetBool("isSliding", obj);
-        jesterAnimator.SetBool("isFalling", false);
     }
 
     private void OnFalling()

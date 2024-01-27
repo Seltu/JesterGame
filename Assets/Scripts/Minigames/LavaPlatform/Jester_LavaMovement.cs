@@ -32,6 +32,19 @@ public class Jester_LavaMovement : MonoBehaviour
     private void HandleFalling()
     {
         _grounded = false;
+        RaycastHit2D leftWallHit = Physics2D.BoxCast(_jesterCollider.bounds.center, _jesterCollider.bounds.size, 0f, Vector2.left, .01f, _wallLayerMask);
+        RaycastHit2D rightWallHit = Physics2D.BoxCast(_jesterCollider.bounds.center, _jesterCollider.bounds.size, 0f, Vector2.right, .01f, _wallLayerMask);
+
+        if (leftWallHit)
+        {
+            _isSliding = true;
+            _jesterRb.drag = _wallDrag;
+        }
+        else if (rightWallHit)
+        {
+            _isSliding = true;
+            _jesterRb.drag = _wallDrag;
+        }
     }
 
     private void Update()

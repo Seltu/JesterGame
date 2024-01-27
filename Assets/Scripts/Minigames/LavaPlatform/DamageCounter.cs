@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DamageCounter : MonoBehaviour
 {
     [SerializeField] private UnityEngine.UI.Image[] _hearts;
+    [SerializeField] private Sprite _damageHeart;
 
     private int _damageCount = 0;
 
@@ -26,7 +27,7 @@ public class DamageCounter : MonoBehaviour
     {
         if(_damageCount < _hearts.Length)
         {
-            _hearts[_damageCount].color = Color.black;
+            _hearts[_damageCount].sprite = _damageHeart;
             _damageCount++;
         }
         else

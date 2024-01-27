@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jesterLavaStats: {fileID: 7418242046421364532}
   _jesterSpriteRenderer: {fileID: 4671696832821599901}
+  jesterInteractions: {fileID: 3882578178270824970}
   _wallDrag: 10
 --- !u!114 &3882578178270824970
 MonoBehaviour:

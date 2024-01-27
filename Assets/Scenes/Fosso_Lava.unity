@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &84802019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3882578178270824970, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
+  m_PrefabInstance: {fileID: 4136504263286022933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e25097169595144b6387c4e46de008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &302681634
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,14 +969,6 @@ PrefabInstance:
       propertyPath: _lava
       value: 
       objectReference: {fileID: 1991964556}
-    - target: {fileID: 1240207048653944062, guid: 0ff6ac4e791033940acac84c591a930f, type: 3}
-      propertyPath: __camSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1240207048653944062, guid: 0ff6ac4e791033940acac84c591a930f, type: 3}
-      propertyPath: __lavaSpeed
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1240207048653944063, guid: 0ff6ac4e791033940acac84c591a930f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1141,10 +1144,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3257034945873323140, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
-      propertyPath: m_GravityScale
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7012644600688479755, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1189,10 +1188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7418242046421364532, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
-      propertyPath: _jumpForce
-      value: 600
-      objectReference: {fileID: 0}
+    - target: {fileID: 7108719174320210786, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
+      propertyPath: jesterInteractions
+      value: 
+      objectReference: {fileID: 84802019}
     - target: {fileID: 8266710020945438282, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_Name
       value: Jester_Lava

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0f4704a7a20aa11408b3653ee1b2d3be
+guid: f91bde025e2a1c8448137bbb9f825c17
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,55 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jester_Running_0
+      name: Jester_idle_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 1
-        width: 56
-        height: 73
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bfdb5ab18a665f04585cb259bccf8fd3
-      internalID: -1187523555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jester_Running_1
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 2
-        width: 53
-        height: 70
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8f066039feb35342a08a5df5c1663c5
-      internalID: -1112527147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jester_Running_2
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 1
+        x: 6
+        y: 0
         width: 51
-        height: 73
+        height: 67
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 541cb85f4af6a34439d77d5723cc7a2e
-      internalID: 89036792
+      spriteID: b536f0e881713ad4d905099eb0e48893
+      internalID: -1635313787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jester_Running_3
+      name: Jester_idle_1
       rect:
         serializedVersion: 2
-        x: 225
-        y: 1
-        width: 50
-        height: 71
+        x: 78
+        y: 0
+        width: 51
+        height: 66
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +152,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b49e18ad138b1b24a903723acbd3c0e4
-      internalID: 1657523056
+      spriteID: 0969d01fdea27304d9c86ce63ba10d1d
+      internalID: -486170105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jester_idle_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 51
+        height: 65
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16c2e406231caa42a04b66d3deeb1d7
+      internalID: 1713725021
       vertices: []
       indices: 
       edges: []
@@ -211,10 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jester_Running_0: -1187523555
-      Jester_Running_1: -1112527147
-      Jester_Running_2: 89036792
-      Jester_Running_3: 1657523056
+      Jester_idle_0: -1635313787
+      Jester_idle_1: -486170105
+      Jester_idle_2: 1713725021
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

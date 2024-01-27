@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class LavaJester_Interations : MonoBehaviour
 {
+    public event Action OnFalling;
     [SerializeField] private Jester_Lava_Stats _jesterLavaStats;
     private Rigidbody2D _jesterRb => _jesterLavaStats.GetJesterRigidBody();
     [SerializeField] private float _lavaImpulse;
@@ -14,6 +12,7 @@ public class LavaJester_Interations : MonoBehaviour
     {
         if(col.gameObject.tag == "Lava")
         {
+            OnFalling?.Invoke();
             _jesterRb.velocity = Vector2.zero;
             _jesterRb.AddForce(new Vector2(0f, _lavaImpulse), ForceMode2D.Impulse);
             GameEventManager.OnTakeDamageTrigger();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,17 +8,33 @@ public class Jester_LavaMovement : MonoBehaviour
 {
     [SerializeField] private Jester_Lava_Stats _jesterLavaStats;
     [SerializeField] private SpriteRenderer _jesterSpriteRenderer;
+    [SerializeField] private LavaJester_Interations jesterInteractions;
+    [SerializeField] private float _wallDrag;
     private Rigidbody2D _jesterRb => _jesterLavaStats.GetJesterRigidBody();
     private Collider2D _jesterCollider => _jesterLavaStats.GetJesterCollider();
     private LayerMask _groundLayerMask => _jesterLavaStats.GetGroundLayerMask();
     private LayerMask _wallLayerMask => _jesterLavaStats.GetWallLayerMask();
     
-    [SerializeField] private float _wallDrag;
     private float _midairTimer;
     private bool _isSliding = false;
     private bool _grounded;
 
-    void Update()
+    public event Action<bool> OnMoving;
+    public event Action<bool> OnSliding;
+    public event Action OnJump;
+    public event Action OnGrounded;
+
+    private void Start()
+    {
+        jesterInteractions.OnFalling += HandleFalling;
+    }
+
+    private void HandleFalling()
+    {
+        _grounded = false;
+    }
+
+    private void Update()
     {
         //Debug.DrawRay(_jesterCollider.bounds.center + new Vector3(_jesterCollider.bounds.extents.x, 0), Vector2.down * (_jesterCollider.bounds.extents.y + 0.01f));
         //Debug.DrawRay(_jesterCollider.bounds.center - new Vector3(_jesterCollider.bounds.extents.x, 0), Vector2.down * (_jesterCollider.bounds.extents.y + 0.01f));
@@ -55,11 +72,14 @@ public class Jester_LavaMovement : MonoBehaviour
         else if (inputVector > 0)
             _jesterSpriteRenderer.flipX = false;
 
+        OnMoving?.Invoke(inputVector!=0);
+
         _jesterRb.velocity = new Vector2(inputVector * _jesterLavaStats.GetLavaJesterSpeed(), _jesterRb.velocity.y);
     }
     
     private void PlayerJump()
     {
+        OnJump?.Invoke();
         _jesterRb.AddForce(new Vector2(0, _jesterLavaStats.GetLavaJesterJump()));
         _grounded = false;
 
@@ -102,6 +122,7 @@ public class Jester_LavaMovement : MonoBehaviour
         _isSliding = false;
         _grounded = false;
         _midairTimer = 0.3f;
+        OnSliding?.Invoke(false);
         _jesterRb.AddForce(new Vector2(horiontalJump, verticalJump));
     }
 
@@ -109,8 +130,11 @@ public class Jester_LavaMovement : MonoBehaviour
     {
         if(col.gameObject.tag == "Wall")
         {
-            if(!_grounded)
-                _isSliding= true;
+            if (!_grounded)
+            {
+                _isSliding = true;
+                OnSliding?.Invoke(true);
+            }
             _jesterRb.drag = _wallDrag;
         }
 
@@ -123,6 +147,9 @@ public class Jester_LavaMovement : MonoBehaviour
             _jesterRb.drag = 0;
         }
 
+        if(raycastHit.collider != null) {
+            OnGrounded?.Invoke();
+        }
         _grounded = raycastHit.collider != null;
     }
 }

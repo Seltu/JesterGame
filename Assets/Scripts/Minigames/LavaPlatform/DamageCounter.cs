@@ -11,7 +11,15 @@ public class DamageCounter : MonoBehaviour
 
     private void Start()
     {
+        _damageCount = 0;
         GameEventManager.onTakeDamage += AddDamageCounter;
+        Debug.Log(_damageCount);
+        GameOverManager._atualScene = SceneManager.GetActiveScene().name;
+    }
+
+    private void OnDestroy()
+    {
+         GameEventManager.onTakeDamage -= AddDamageCounter;
     }
 
     private void AddDamageCounter()

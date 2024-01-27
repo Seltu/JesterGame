@@ -28,6 +28,8 @@ public class MinigameManager : MonoBehaviour
     {
         _progress = startingProgress;
         laughMeter.SetMaxValue(maxProgress);
+        Debug.Log(SceneManager.GetActiveScene().name);
+        GameOverManager._atualScene = SceneManager.GetActiveScene().name;
     }
 
     private void AddProgress(float points)

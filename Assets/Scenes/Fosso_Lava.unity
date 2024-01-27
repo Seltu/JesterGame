@@ -7542,6 +7542,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3882578178270824970, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
+      propertyPath: _lavaImpulse
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7012644600688479755, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_RootOrder
       value: 4

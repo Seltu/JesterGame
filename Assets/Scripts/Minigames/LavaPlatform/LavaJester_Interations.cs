@@ -37,6 +37,7 @@ public class LavaJester_Interations : MonoBehaviour
     {
         if(col.gameObject.tag == "Finish_Line")
         {
+            Debug.Log("AAA");
             GameEventManager.AddScoreTrigger(100);
         }
     }

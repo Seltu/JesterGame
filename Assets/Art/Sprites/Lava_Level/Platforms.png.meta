@@ -431,6 +431,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Platforms_15
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 45
+        width: 94
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d1fd545e66a69e43ad760d09d26a613
+      internalID: -1347910473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -449,6 +470,7 @@ TextureImporter:
       Platforms_12: -372374603
       Platforms_13: -846907289
       Platforms_14: 276663831
+      Platforms_15: -1347910473
       Platforms_2: -1123127289
       Platforms_3: 1554989411
       Platforms_4: 907520959

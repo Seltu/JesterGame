@@ -101,6 +101,7 @@ public class Jester_LavaMovement : MonoBehaviour
     
     private void PlayerJump()
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.boingSFX, transform.position);
         OnJump?.Invoke();
         _jesterRb.AddForce(new Vector2(0, _jesterLavaStats.GetLavaJesterJump()));
         _grounded = false;
@@ -122,6 +123,7 @@ public class Jester_LavaMovement : MonoBehaviour
 
     private void PlayerWallJump()
     {   
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.boingSFX, transform.position);
         float horizontalForce = CheckWall();
 
         float horiontalJump = _jesterLavaStats.GetLavaJesterJump() * horizontalForce / 2;

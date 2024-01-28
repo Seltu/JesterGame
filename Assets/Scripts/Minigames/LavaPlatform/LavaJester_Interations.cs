@@ -21,6 +21,7 @@ public class LavaJester_Interations : MonoBehaviour
     {
         if(col.gameObject.tag == "Lava")
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.screamSFX, transform.position);
             OnFalling?.Invoke();
             _jesterRb.velocity = Vector2.zero;
             _jesterRb.AddForce(new Vector2(0f, _lavaImpulse), ForceMode2D.Impulse);

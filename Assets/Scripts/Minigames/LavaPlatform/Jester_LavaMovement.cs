@@ -73,6 +73,7 @@ public class Jester_LavaMovement : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Space)||_slidePressWhileLocked)&&!_grounded&& _isSliding)
         {
+            _jesterAudio.volume = 0.3f;
             _jesterAudio.PlayOneShot(_jesterLavaStats.GetJesterJumpSFX());
             PlayerWallJump();
             _jesterRb.drag = 0;
@@ -82,6 +83,7 @@ public class Jester_LavaMovement : MonoBehaviour
         {
             if (_grounded && !_isSliding)
             {
+                _jesterAudio.volume = 0.3f;
                 _jesterAudio.PlayOneShot(_jesterLavaStats.GetJesterJumpSFX());
                 PlayerJump();
             }

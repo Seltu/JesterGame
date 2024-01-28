@@ -15,7 +15,7 @@ public class Jester_LavaMovement : MonoBehaviour
     private LayerMask _groundLayerMask => _jesterLavaStats.GetGroundLayerMask();
     private LayerMask _wallLayerMask => _jesterLavaStats.GetWallLayerMask();
     
-    private float _midairTimer;
+    private float _lockMovementTimer;
     private bool _isSliding = false;
     private bool _grounded;
 
@@ -23,6 +23,8 @@ public class Jester_LavaMovement : MonoBehaviour
     public event Action<bool> OnSliding;
     public event Action OnJump;
     public event Action OnGrounded;
+
+    private bool _slidePressWhileLocked;
 
     private void Start()
     {
@@ -53,14 +55,26 @@ public class Jester_LavaMovement : MonoBehaviour
         //Debug.DrawRay(_jesterCollider.bounds.center - new Vector3(_jesterCollider.bounds.extents.x, 0), Vector2.down * (_jesterCollider.bounds.extents.y + 0.01f));
         //Debug.DrawRay(_jesterCollider.bounds.center - new Vector3(_jesterCollider.bounds.extents.x, _jesterCollider.bounds.extents.y), Vector2.right * (_jesterCollider.bounds.extents.x));
 
-        if(!_isSliding&&_midairTimer<=0)
+        if (_lockMovementTimer > 0)
+        {
+            _lockMovementTimer -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space) && !_grounded && _isSliding)
+                _slidePressWhileLocked = true;
+        }
+        else
+            _lockMovementTimer = 0;
+
+        if (_lockMovementTimer > 0) return;
+
+        if (!_isSliding)
             PlayerMovement();
 
 
-        if (Input.GetKeyDown(KeyCode.Space)&&!_grounded&&_isSliding)
+        if ((Input.GetKeyDown(KeyCode.Space)||_slidePressWhileLocked)&&!_grounded&& _isSliding)
         {
             PlayerWallJump();
             _jesterRb.drag = 0;
+            _slidePressWhileLocked = false;
         }
         else if (Input.GetKey(KeyCode.Space))
         {
@@ -69,11 +83,6 @@ public class Jester_LavaMovement : MonoBehaviour
                 PlayerJump();
             }
         }
-
-        if (_midairTimer > 0)
-            _midairTimer -= Time.deltaTime;
-        else
-            _midairTimer = 0;
     }
 
     private void PlayerMovement()
@@ -121,7 +130,7 @@ public class Jester_LavaMovement : MonoBehaviour
         _jesterRb.drag = 0;
         _isSliding = false;
         _grounded = false;
-        _midairTimer = 0.4f;
+        _lockMovementTimer = 0.4f;
         OnSliding?.Invoke(false);
         _jesterRb.AddForce(new Vector2(horiontalJump, verticalJump));
     }
@@ -132,9 +141,15 @@ public class Jester_LavaMovement : MonoBehaviour
         bool rightWallHit = Physics2D.Raycast(_jesterCollider.bounds.center, Vector2.right, 0.5f, _wallLayerMask);
 
         if (leftWallHit)
+        {
             _jesterSpriteRenderer.flipX = false;
+            _lockMovementTimer = 0.1f;
+        }
         else if (rightWallHit)
+        {
             _jesterSpriteRenderer.flipX = true;
+            _lockMovementTimer = 0.1f;
+        }
 
         if (leftWallHit)
             return 1;
@@ -147,7 +162,7 @@ public class Jester_LavaMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x, 0.1f), 0f, Vector2.down, 1f, _groundLayerMask);
 
-        if (raycastHit)
+        if (raycastHit&&_jesterRb.velocity.y<=0)
         {
             _isSliding = false;
             _grounded = true;

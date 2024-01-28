@@ -115,11 +115,6 @@ public class Jester_LavaMovement : MonoBehaviour
     {   
         float horizontalForce = CheckWall();
 
-        if (horizontalForce < 0)
-            _jesterSpriteRenderer.flipX = true;
-        else if (horizontalForce > 0)
-            _jesterSpriteRenderer.flipX = false;
-
         float horiontalJump = _jesterLavaStats.GetLavaJesterJump() * horizontalForce / 2;
         float verticalJump = _jesterLavaStats.GetLavaJesterJump();
 
@@ -137,6 +132,11 @@ public class Jester_LavaMovement : MonoBehaviour
         bool rightWallHit = Physics2D.Raycast(_jesterCollider.bounds.center, Vector2.right, 0.5f, _wallLayerMask);
 
         if (leftWallHit)
+            _jesterSpriteRenderer.flipX = false;
+        else if (rightWallHit)
+            _jesterSpriteRenderer.flipX = true;
+
+        if (leftWallHit)
             return 1;
         else if (rightWallHit)
             return -1;
@@ -145,9 +145,20 @@ public class Jester_LavaMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Wall")
-        {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x, 0.1f), 0f, Vector2.down, 1f, _groundLayerMask);
 
+        if (raycastHit)
+        {
+            _isSliding = false;
+            _grounded = true;
+            _jesterRb.drag = 0;
+            OnGrounded?.Invoke();
+            OnSliding?.Invoke(false);
+        }
+        if (_grounded) return;
+
+        if (col.gameObject.tag == "Wall")
+        {
             if (!_grounded && CheckWall() != 0)
             {
                 _isSliding = true;
@@ -155,20 +166,6 @@ public class Jester_LavaMovement : MonoBehaviour
             }
             _jesterRb.drag = _wallDrag;
         }
-
-
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x, 0.1f), 0f, Vector2.down, 1f, _groundLayerMask);
-
-        if (raycastHit)
-        {
-            _isSliding = false;
-            _jesterRb.drag = 0;
-        }
-
-        if(raycastHit.collider != null) {
-            OnGrounded?.Invoke();
-        }
-        _grounded = raycastHit.collider != null;
     }
 
     private void OnCollisionExit2D(Collision2D col)

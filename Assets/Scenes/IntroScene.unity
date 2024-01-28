@@ -1444,6 +1444,7 @@ GameObject:
   - component: {fileID: 925814568}
   - component: {fileID: 925814567}
   - component: {fileID: 925814566}
+  - component: {fileID: 925814569}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1528,6 +1529,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 925814569}
+        m_TargetAssemblyTypeName: LeaveGame, Assembly-CSharp
+        m_MethodName: LeaveGameButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &925814567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1566,6 +1579,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925814564}
   m_CullTransparentMesh: 1
+--- !u!114 &925814569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925814564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4caa2700cca924b9a9c04369a59663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &935251050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,7 +3219,7 @@ PrefabInstance:
     - target: {fileID: 3040241442931370518, guid: b82054a213724494bb392b29ef77361b, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: df0cbf9ecb1e11a4d8c8ec2935e8abfa, type: 3}
+      objectReference: {fileID: 8300000, guid: e192c603c80283f45a6ee43b79638ffd, type: 3}
     - target: {fileID: 3040241442955027824, guid: b82054a213724494bb392b29ef77361b, type: 3}
       propertyPath: m_RootOrder
       value: 15

@@ -157,7 +157,7 @@ public class Jester_LavaMovement : MonoBehaviour
         }
 
 
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, _jesterCollider.bounds.size, 0f, Vector2.down, .05f, _groundLayerMask);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x, 0.1f), 0f, Vector2.down, 1f, _groundLayerMask);
 
         if (raycastHit)
         {

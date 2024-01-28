@@ -7,10 +7,12 @@ public class BalancePlayer : MonoBehaviour
 {
     public event Action<float> OnMovement;
     [SerializeField] private BalancePlayerStats playerStats;
+    [SerializeField] private AudioSource playerAudioSource;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private HingeJoint2D leverHingeJoint;
     [SerializeField] private MinigameManager minigameManager;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private AudioClip _vineBoomSFX;
 
     private void Start()
     {
@@ -20,6 +22,7 @@ public class BalancePlayer : MonoBehaviour
 
     private void FlipOver()
     {
+        playerAudioSource.PlayOneShot(_vineBoomSFX);
         playerAnimator.SetTrigger("Fall");
         rb.velocity = Vector2.zero;
         this.enabled = false;

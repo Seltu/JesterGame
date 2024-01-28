@@ -33,7 +33,7 @@ public class BalanceObject : MonoBehaviour
         if(collision.CompareTag("OffscreenLimit"))
         GameEventManager.AddScoreTrigger(-30);
         Destroy(gameObject, 0.2f);
-        Instantiate(failPrefab, new Vector2(transform.position.x, collision.bounds.min.y), Quaternion.identity);
+        Instantiate(failPrefab, new Vector2(transform.position.x, -4.57f), Quaternion.identity);
     }
 
 }

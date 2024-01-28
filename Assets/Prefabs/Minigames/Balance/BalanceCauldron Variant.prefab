@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046043120709951366, guid: 56b48cffd83c47f45a719831874155db, type: 3}
       propertyPath: m_Size.y
-      value: 3
+      value: 2.818104
       objectReference: {fileID: 0}
     - target: {fileID: 7046043120709951366, guid: 56b48cffd83c47f45a719831874155db, type: 3}
       propertyPath: m_Offset.x
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046043120709951366, guid: 56b48cffd83c47f45a719831874155db, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.090947986
       objectReference: {fileID: 0}
     - target: {fileID: 7046043120709951366, guid: 56b48cffd83c47f45a719831874155db, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046043120709951367, guid: 56b48cffd83c47f45a719831874155db, type: 3}
       propertyPath: m_Name
-      value: BalanceCauldron
+      value: BalanceCauldron Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b48cffd83c47f45a719831874155db, type: 3}

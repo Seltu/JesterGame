@@ -25,11 +25,11 @@ public class LavaJester_Interations : MonoBehaviour
             _jesterRb.velocity = Vector2.zero;
             _jesterRb.AddForce(new Vector2(0f, _lavaImpulse), ForceMode2D.Impulse);
             _lavaHits += 1;
-            if (_invincibilityTimer <= 0 || _lavaHits >= 5){
+            if (_invincibilityTimer <= 0 || _lavaHits >= 3){
                 GameEventManager.OnTakeDamageTrigger();
                 _invincibilityTimer = invincibilityTime;
+                _lavaHits = 0;
             }
-
         }
     }
 

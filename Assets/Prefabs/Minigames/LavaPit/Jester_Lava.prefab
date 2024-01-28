@@ -258,7 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jesterLavaStats: {fileID: 7418242046421364532}
-  _lavaImpulse: 12
+  _lavaImpulse: 20
+  invincibilityTime: 3
 --- !u!1001 &4136504264206878017
 PrefabInstance:
   m_ObjectHideFlags: 0

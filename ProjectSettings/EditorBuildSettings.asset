@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Malabarismo.unity
     guid: 736bf4f85b6829c44856a896b9598b88
+  - enabled: 1
+    path: Assets/Scenes/EndCutScene.unity
+    guid: 9d75d29de8f2f7541971bbbb50909aa5
+  - enabled: 1
+    path: Assets/Scenes/LavaCutScene.unity
+    guid: cc648ceb32194ff48a44b4b5f9362fda
+  - enabled: 1
+    path: Assets/Scenes/ThanksForPlaying.unity
+    guid: cd58c4d3efbc6bd49a5c0693ae526ff3
   m_configObjects: {}

@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LavaJester_Interations : MonoBehaviour
 {
@@ -40,8 +42,15 @@ public class LavaJester_Interations : MonoBehaviour
     {
         if(col.gameObject.tag == "Finish_Line")
         {
-            Debug.Log("AAA");
-            GameEventManager.AddScoreTrigger(100);
+            StartCoroutine(Win());
         }
+    }
+
+    private IEnumerator Win()
+    {
+        yield return new WaitForSeconds(2f);
+        GameEventManager.EndSceneTrigger();
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("EndCutScene");
     }
 }

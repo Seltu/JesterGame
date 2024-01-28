@@ -12,6 +12,7 @@ public class Jester_LavaMovement : MonoBehaviour
     [SerializeField] private float _wallDrag;
     private Rigidbody2D _jesterRb => _jesterLavaStats.GetJesterRigidBody();
     private Collider2D _jesterCollider => _jesterLavaStats.GetJesterCollider();
+    private AudioSource _jesterAudio => _jesterLavaStats.GetJesterAudioSource();
     private LayerMask _groundLayerMask => _jesterLavaStats.GetGroundLayerMask();
     private LayerMask _wallLayerMask => _jesterLavaStats.GetWallLayerMask();
     
@@ -72,6 +73,7 @@ public class Jester_LavaMovement : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Space)||_slidePressWhileLocked)&&!_grounded&& _isSliding)
         {
+            _jesterAudio.PlayOneShot(_jesterLavaStats.GetJesterJumpSFX());
             PlayerWallJump();
             _jesterRb.drag = 0;
             _slidePressWhileLocked = false;
@@ -80,6 +82,7 @@ public class Jester_LavaMovement : MonoBehaviour
         {
             if (_grounded && !_isSliding)
             {
+                _jesterAudio.PlayOneShot(_jesterLavaStats.GetJesterJumpSFX());
                 PlayerJump();
             }
         }

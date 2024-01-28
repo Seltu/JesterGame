@@ -6,6 +6,7 @@ public class LavaJester_Interations : MonoBehaviour
     public event Action OnFalling;
     [SerializeField] private Jester_Lava_Stats _jesterLavaStats;
     private Rigidbody2D _jesterRb => _jesterLavaStats.GetJesterRigidBody();
+    private AudioSource _jesterAudio => _jesterLavaStats.GetJesterAudioSource();
     [SerializeField] private float _lavaImpulse;
     [SerializeField] private float invincibilityTime;
     private float _invincibilityTimer;
@@ -21,6 +22,7 @@ public class LavaJester_Interations : MonoBehaviour
     {
         if(col.gameObject.tag == "Lava")
         {
+            _jesterAudio.PlayOneShot(_jesterLavaStats.GetJesterScreamSFX());
             OnFalling?.Invoke();
             _jesterRb.velocity = Vector2.zero;
             _jesterRb.AddForce(new Vector2(0f, _lavaImpulse), ForceMode2D.Impulse);

@@ -30,7 +30,10 @@ public class ElevationMecanic : MonoBehaviour
         elevationCamMovement.y = __camSpeed * Time.deltaTime;    
         elevationLavaMovement.y = __lavaSpeed * Time.deltaTime;    
 
-        _cam.transform.position += (Vector3)elevationCamMovement;
+
+        if(_cam.transform.position.y <= 94.5f)
+            _cam.transform.position += (Vector3)elevationCamMovement;
+            
         _lava.position += (Vector3)elevationLavaMovement;
     }
 

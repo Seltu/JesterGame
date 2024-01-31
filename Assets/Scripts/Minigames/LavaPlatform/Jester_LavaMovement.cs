@@ -17,6 +17,7 @@ public class Jester_LavaMovement : MonoBehaviour
     private LayerMask _wallLayerMask => _jesterLavaStats.GetWallLayerMask();
     
     private float _lockMovementTimer;
+    private float _slideExitTimer = 0.1f;
     private bool _isSliding = false;
     private bool _grounded;
 
@@ -24,8 +25,6 @@ public class Jester_LavaMovement : MonoBehaviour
     public event Action<bool> OnSliding;
     public event Action OnJump;
     public event Action OnGrounded;
-
-    private bool _slidePressWhileLocked;
 
     private void Start()
     {
@@ -59,25 +58,21 @@ public class Jester_LavaMovement : MonoBehaviour
         if (_lockMovementTimer > 0)
         {
             _lockMovementTimer -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space) && !_grounded && _isSliding)
-                _slidePressWhileLocked = true;
         }
         else
             _lockMovementTimer = 0;
 
         if (_lockMovementTimer > 0) return;
 
-        if (!_isSliding)
-            PlayerMovement();
+        PlayerMovement();
 
 
-        if ((Input.GetKeyDown(KeyCode.Space)||_slidePressWhileLocked)&&!_grounded&& _isSliding)
+        if (Input.GetKeyDown(KeyCode.Space)&&!_grounded&& _isSliding)
         {
             _jesterAudio.volume = 0.3f;
             _jesterAudio.PlayOneShot(_jesterLavaStats.GetJesterJumpSFX());
             PlayerWallJump();
             _jesterRb.drag = 0;
-            _slidePressWhileLocked = false;
         }
         else if (Input.GetKey(KeyCode.Space))
         {
@@ -93,24 +88,40 @@ public class Jester_LavaMovement : MonoBehaviour
     private void PlayerMovement()
     {
         float inputVector = Input.GetAxisRaw("Horizontal");
+        var wall = CheckWall();
+        if (_isSliding)
+        {
+            if (inputVector != wall) return;
+            if (_slideExitTimer > 0)
+            {
+                _slideExitTimer -= Time.deltaTime;
+            }
+            else
+            {
+                _slideExitTimer = 0.1f;
+                ExitSlide();
+            }
+        }
+        else
+        {
+            if (inputVector < 0)
+                _jesterSpriteRenderer.flipX = true;
+            else if (inputVector > 0)
+                _jesterSpriteRenderer.flipX = false;
 
-        if(inputVector < 0)
-            _jesterSpriteRenderer.flipX = true;
-        else if (inputVector > 0)
-            _jesterSpriteRenderer.flipX = false;
+            OnMoving?.Invoke(inputVector != 0);
+            _jesterRb.velocity = new Vector2(inputVector * _jesterLavaStats.GetLavaJesterSpeed(), _jesterRb.velocity.y);
+        }
 
-        OnMoving?.Invoke(inputVector!=0);
-
-        _jesterRb.velocity = new Vector2(inputVector * _jesterLavaStats.GetLavaJesterSpeed(), _jesterRb.velocity.y);
     }
-    
+
     private void PlayerJump()
     {
         OnJump?.Invoke();
         _jesterRb.AddForce(new Vector2(0, _jesterLavaStats.GetLavaJesterJump()));
         _grounded = false;
 
-        int wallHit = CheckWall();
+        /*int wallHit = CheckWall();
         if (wallHit > 0)
         {
             _isSliding = true;
@@ -122,21 +133,20 @@ public class Jester_LavaMovement : MonoBehaviour
             _isSliding = true;
             _jesterRb.drag = _wallDrag;
             OnSliding?.Invoke(true);
-        }
+        }*/
     }
 
     private void PlayerWallJump()
     {   
         float horizontalForce = CheckWall();
 
-        float horiontalJump = _jesterLavaStats.GetLavaJesterJump() * horizontalForce / 2;
-        float verticalJump = _jesterLavaStats.GetLavaJesterJump();
+        float horiontalJump = _jesterLavaStats.GetLavaJesterJump() * 1.2f * horizontalForce / 2;
+        float verticalJump = _jesterLavaStats.GetLavaJesterJump() * 1.2f;
 
-        _jesterRb.drag = 0;
-        _isSliding = false;
         _grounded = false;
         _lockMovementTimer = 0.4f;
-        OnSliding?.Invoke(false);
+        _jesterRb.velocity = Vector2.zero;
+        ExitSlide();
         _jesterRb.AddForce(new Vector2(horiontalJump, verticalJump));
     }
 
@@ -146,58 +156,65 @@ public class Jester_LavaMovement : MonoBehaviour
         bool rightWallHit = Physics2D.Raycast(_jesterCollider.bounds.center, Vector2.right, 0.5f, _wallLayerMask);
 
         if (leftWallHit)
-        {
-            _jesterSpriteRenderer.flipX = false;
-            _lockMovementTimer = 0.1f;
-        }
-        else if (rightWallHit)
-        {
-            _jesterSpriteRenderer.flipX = true;
-            _lockMovementTimer = 0.1f;
-        }
-
-        if (leftWallHit)
             return 1;
         else if (rightWallHit)
             return -1;
         return 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionStay2D(Collision2D col)
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x, 0.1f), 0f, Vector2.down, 1f, _groundLayerMask);
+        if (_grounded) return;
+
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x, 0.02f), 0f, Vector2.down, 1f, _groundLayerMask);
 
         if (raycastHit&&_jesterRb.velocity.y<=0)
         {
-            _isSliding = false;
             _grounded = true;
-            _jesterRb.drag = 0;
             OnGrounded?.Invoke();
-            OnSliding?.Invoke(false);
+            ExitSlide();
         }
-        if (_grounded) return;
-
-        if (col.gameObject.tag == "Wall")
+        else if (col.gameObject.tag == "Wall")
         {
-            if (!_grounded && CheckWall() != 0)
+            var wall = CheckWall();
+            if (!_grounded && wall != 0)
             {
+                if (wall > 0)
+                {
+                    _jesterSpriteRenderer.flipX = false;
+                }
+                else if (wall < 0)
+                {
+                    _jesterSpriteRenderer.flipX = true;
+                }
                 _isSliding = true;
                 OnSliding?.Invoke(true);
             }
             _jesterRb.drag = _wallDrag;
         }
     }
-
     private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Wall")
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_jesterCollider.bounds.center, new Vector2(_jesterCollider.bounds.size.x+0.2f, 0.02f), 0f, Vector2.down, 1f, _groundLayerMask);
+
+        if (!raycastHit || _jesterRb.velocity.y <= 0)
+        {
+            _grounded = false;
+        }
+
+        if (col.gameObject.CompareTag("Wall"))
         {
             if (CheckWall() == 0)
             {
-                _isSliding = false;
-                _jesterRb.drag = 0;
-                OnSliding?.Invoke(false);
+                ExitSlide();
             }
         }
+    }
+
+    private void ExitSlide()
+    {
+        _isSliding = false;
+        OnSliding?.Invoke(false);
+        _jesterRb.drag = 0;
     }
 } 

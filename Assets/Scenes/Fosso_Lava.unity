@@ -11223,6 +11223,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7418242046421364532, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
+      propertyPath: _jumpForce
+      value: 650
+      objectReference: {fileID: 0}
     - target: {fileID: 8266710020945438282, guid: b08938ade8810b046af6708e2e8e3116, type: 3}
       propertyPath: m_Name
       value: Jester_Lava

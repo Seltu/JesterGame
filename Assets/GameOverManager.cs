@@ -16,7 +16,7 @@ public class GameOverManager : MonoBehaviour
         if (gameOverTimer > 0)
         {
             gameOverTimer -= Time.deltaTime;
-            continueText.text = "Continue?..." + ((int)gameOverTimer).ToString() + "\n<size=%70><pos=%285> (Press Enter)";
+            continueText.text = "Continue?..." + ((int)gameOverTimer).ToString() + "\n<size=70%> (Press Enter)";
         }
         else
         {

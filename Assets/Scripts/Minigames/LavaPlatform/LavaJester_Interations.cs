@@ -12,7 +12,7 @@ public class LavaJester_Interations : MonoBehaviour
     [SerializeField] private float _lavaImpulse;
     [SerializeField] private float invincibilityTime;
     private float _invincibilityTimer;
-    private int _lavaHits;
+    private float _lavaStayTimer;
 
     private void Update()
     {
@@ -29,11 +29,24 @@ public class LavaJester_Interations : MonoBehaviour
             OnFalling?.Invoke();
             _jesterRb.velocity = Vector2.zero;
             _jesterRb.AddForce(new Vector2(0f, _lavaImpulse), ForceMode2D.Impulse);
-            _lavaHits += 1;
-            if (_invincibilityTimer <= 0 || _lavaHits >= 3){
+            _lavaStayTimer = 0.1f;
+            if (_invincibilityTimer <= 0){
                 GameEventManager.OnTakeDamageTrigger();
                 _invincibilityTimer = invincibilityTime;
-                _lavaHits = 0;
+            }
+        }
+    }
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Lava")
+        {
+            if (_lavaStayTimer > 0)
+                _lavaStayTimer -= Time.deltaTime;
+            else
+            {
+                // >:) skill issue lmao
+                GameEventManager.OnTakeDamageTrigger();
+                _lavaStayTimer = 0.1f;
             }
         }
     }
